@@ -21,7 +21,9 @@ function PostCard(props) {
               {props.firstName} {props.lastName}
             </h5>
             <h6 className="card-subtitle mb-2 text-muted">
-              <Moment format="MM/DD/YYYY hh:mm a" date={props.createdAt} />
+              {props.createdAt ? (
+                <Moment format="MM/DD/YYYY hh:mm a" date={props.createdAt} />
+              ) : null}
             </h6>
           </GridContainer>
 

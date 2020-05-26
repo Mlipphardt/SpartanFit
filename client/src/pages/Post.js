@@ -197,6 +197,7 @@ class Post extends Component {
                       image={comment.userpic}
                       username={comment.username}
                       postBody={comment.commentBody}
+                      createdAt={comment.createdAt}
                     >
                       {this.state.id === comment.userId ? (
                         <Dropdown>

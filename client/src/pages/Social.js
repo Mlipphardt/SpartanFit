@@ -206,7 +206,7 @@ class Social extends Component {
                   lastName={user.lastName}
                   image={
                     user.image[0] === undefined
-                      ? 'http://localhost:3000/static/media/thumb.3b7940ff.png'
+                      ? 'https://spartanfit.s3.us-east-2.amazonaws.com/1590371866852'
                       : user.image[0].profileImg
                   }
                   username={user.slug}
