@@ -24,11 +24,7 @@ import {
   CloseBtn,
 } from '../../components/BootstrapModal';
 import Dropdown from '../../components/Dropdown';
-
-{
-  /* <Moment format="YYYY/MM/DD" date={this.state.joinDate} />
-  <Moment fromNow>{this.state.joinDate}</Moment> */
-}
+import PostModal from '../../components/PostModal';
 
 class Profile extends Component {
   constructor(props) {
@@ -181,38 +177,6 @@ class Profile extends Component {
         this.loadUserProfile();
       })
       .catch(err => console.log(err));
-  };
-
-  handlePostClick = event => {
-    event.preventDefault();
-    if (this.state.post) {
-      API.makePost(this.state.id, {
-        username: this.state.slug,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        userpic: this.state.imageUrl,
-        postBody: this.state.post,
-        userId: this.state.id,
-      })
-        .then(res => {
-          if (res.status === 200) {
-            this.setState({
-              post: '',
-            });
-            const show = true;
-            const message = 'Posted!';
-            const variant = 'success';
-            this.setState({ show: show, message: message, variant: variant });
-            this.loadUserProfile();
-          }
-        })
-        .catch(err => console.log(err));
-    } else {
-      const show = true;
-      const message = 'Post is empty';
-      const variant = 'danger';
-      this.setState({ show: show, message: message, variant: variant });
-    }
   };
 
   handleEditBtn = (event, id, post) => {
@@ -496,16 +460,12 @@ class Profile extends Component {
             </Row>
             <hr></hr>
             <h4>Posts</h4>
+            <PostModal
+              id={this.props.id}
+              postWallId={this.props.id}
+              loadPosts={this.loadUserProfile}
+            />
             <hr></hr>
-            <InputBar barName={'postbar'}>
-              <BarInput
-                onChange={this.handleInputChange}
-                name="post"
-                value={this.state.post}
-                type="text"
-              />
-              <InputBarBtn onClick={this.handlePostClick} label="Post" />
-            </InputBar>
             {this.state.posts.length ? (
               <div>
                 {this.state.posts.map(post => (

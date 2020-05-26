@@ -20,6 +20,7 @@ import {
 } from '../components/SocialNav';
 import GridContainer from '../components/GridContainer';
 import Moment from 'react-moment';
+import PostModal from '../components/PostModal';
 
 class Social extends Component {
   constructor(props) {
@@ -118,6 +119,13 @@ class Social extends Component {
                     <div onClick={event => this.loadFollowing(event)}>
                       <i class="fas fa-user-friends"></i> Social Feed
                     </div>
+                  </NavBarLi>
+                  <NavBarLi>
+                    <PostModal
+                      id={this.props.id}
+                      postWallId={this.props.id}
+                      loadPosts={this.loadPublicPosts}
+                    />
                   </NavBarLi>
                 </NavBarUl>
                 <NavBarSearch value={this.state.activitySearch}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from '../../utils/API';
 import { Link } from 'react-router-dom';
-import { Col, Row, Container } from '../../components/Grid';
+import { Col, Row } from '../../components/Grid';
 import './style.css';
 import Alert from '../../components/Alert';
 import {
@@ -14,8 +14,6 @@ import {
 import thumb from '../../images/thumb.png';
 import Btn from '../../components/Btn';
 import PostCard from '../../components/PostCard';
-import Moment from 'react-moment';
-import { isThisSecond } from 'date-fns';
 
 class PublicProfile extends Component {
   constructor(props) {
@@ -24,6 +22,7 @@ class PublicProfile extends Component {
     this.state = {
       id: '',
       userId: '',
+      user: '',
       username: '',
       firstName: '',
       lastName: '',
@@ -48,7 +47,7 @@ class PublicProfile extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.setState({ id: this.props.id });
     this.loadUserdata();
     this.loadLurkerData();
@@ -298,7 +297,10 @@ class PublicProfile extends Component {
                 </Col>
               </Row>
               <hr></hr>
-              <h4>Posts</h4>
+              <div>
+                <h4>Posts</h4>
+              </div>
+
               <hr></hr>
               {this.state.posts.length ? (
                 <div>
