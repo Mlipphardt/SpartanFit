@@ -5,6 +5,7 @@ import {
   CardDiv,
   CardBody,
   CardTitle,
+  CardSubtitle,
   CardText,
 } from '../components/BootstrapCard';
 import { Link } from 'react-router-dom';
@@ -18,6 +19,7 @@ import {
   NavBarSearch,
 } from '../components/SocialNav';
 import GridContainer from '../components/GridContainer';
+import Moment from 'react-moment';
 
 class Social extends Component {
   constructor(props) {
@@ -150,9 +152,20 @@ class Social extends Component {
                         </div>
                       </Link>
                       <div>
-                        <CardTitle>
-                          {post.firstName} {post.lastName}
-                        </CardTitle>
+                        <GridContainer
+                          style={{ gridTemplateColumns: '1fr 200px ' }}
+                        >
+                          <CardTitle>
+                            {post.firstName} {post.lastName}
+                          </CardTitle>
+                          <CardSubtitle>
+                            <Moment
+                              format="MM/DD/YYYY hh:mm a"
+                              date={post.createdAt}
+                            />
+                          </CardSubtitle>
+                        </GridContainer>
+
                         <CardText>{post.postBody}</CardText>
                         <Link
                           to={'/posts/' + post._id}

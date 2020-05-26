@@ -35,3 +35,32 @@
 .links .active {
   color: #25e0fd;
 }
+
+#popover-contained {
+  min-width: 600px;
+}
+
+#popover-header {
+  background-color: #353b40;
+  color: white;
+}
+
+#user-name {
+  color: #353b40;
+  text-decoration: none;
+}
+
+#notifcation-container {
+  position: relative;
+}
+
+#badge {
+  position: absolute;
+  top: -3px;
+  left: 11px;
+  font-size: 10px;
+}
+
+#x-icon {
+  float: right;
+}

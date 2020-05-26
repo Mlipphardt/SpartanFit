@@ -8,4 +8,5 @@ module.exports = {
   Comment: require('./comment'),
   Like: require('./like'),
   Follow: require('./follow'),
+  Notification: require('./notification'),
 };

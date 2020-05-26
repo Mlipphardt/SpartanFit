@@ -12,17 +12,45 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    db.Comment.create(req.body)
-      .then(function (dbComment) {
+    if (req.body.originalPoster === req.body.userId) {
+      db.Comment.create(req.body)
+        .then(function (dbComment) {
+          console.log(req.body);
+          return db.Post.findByIdAndUpdate(
+            { _id: req.params.id },
+            { $push: { comments: dbComment._id } },
+            { new: true }
+          );
+        })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    } else {
+      db.Comment.create(req.body).then(function (dbComment) {
         console.log(req.body);
         return db.Post.findByIdAndUpdate(
           { _id: req.params.id },
           { $push: { comments: dbComment._id } },
           { new: true }
         );
+      }).then;
+      db.Notification.create({
+        username: req.body.username,
+        userId: req.body.userId,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        postId: req.body.postId,
+        notificationType: 'commented',
       })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+        .then(function (dbNotification) {
+          return db.User.findByIdAndUpdate(
+            { _id: req.body.originalPoster },
+            { $push: { notifications: dbNotification._id } },
+            { new: true }
+          );
+        })
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+    }
   },
   update: function (req, res) {
     db.Comment.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })

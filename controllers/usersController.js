@@ -39,6 +39,10 @@ module.exports = {
         options: { sort: '-createdAt' },
         populate: { path: 'comments' },
       })
+      .populate({
+        path: 'notifications',
+        options: { sort: '-createdAt', limit: 15 },
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

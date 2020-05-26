@@ -16,6 +16,12 @@ export default {
   unfollowUser: function (id) {
     return axios.delete('/api/follow/' + id);
   },
+  deleteNotification: function (id) {
+    return axios.delete('/api/notifications/' + id);
+  },
+  editNotification: function (id, data) {
+    return axios.put('/api/notifications/' + id, data);
+  },
   likePost: function (id) {
     return axios.post('/api/likes/' + id);
   },

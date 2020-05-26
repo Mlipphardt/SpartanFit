@@ -15,8 +15,15 @@
   color: #333;
 }
 
-.profile-img {
+.profile-img img {
+  object-fit: cover;
+}
+
+.profile-img img {
   position: relative;
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
   text-align: center;
   color: white;
 }

@@ -25,6 +25,11 @@ import {
 } from '../../components/BootstrapModal';
 import Dropdown from '../../components/Dropdown';
 
+{
+  /* <Moment format="YYYY/MM/DD" date={this.state.joinDate} />
+  <Moment fromNow>{this.state.joinDate}</Moment> */
+}
+
 class Profile extends Component {
   constructor(props) {
     super(props);

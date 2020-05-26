@@ -23,6 +23,10 @@ export function CardBody(props) {
   );
 }
 
+export function CardSubtitle(props) {
+  return <h6 className="card-subtitle mb-2 text-muted">{props.children}</h6>;
+}
+
 export function CardTitle(props) {
   return <h5 className="card-title">{props.children}</h5>;
 }

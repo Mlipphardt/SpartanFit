@@ -61,6 +61,7 @@ class App extends Component {
       return (
         <div className="App">
           <NavMenu
+            id={this.state.id}
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
           />

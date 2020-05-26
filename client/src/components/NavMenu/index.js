@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Row } from '../../components/Grid';
 import { Link } from 'react-router-dom';
+import Notifications from '../../components/Popover';
 import API from '../../utils/API';
 import './style.css';
 
@@ -9,10 +10,37 @@ class NavMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: '',
       redirectTo: null,
+      notifications: [],
     };
     this.logout = this.logout.bind(this);
   }
+
+  componentWillMount() {
+    this.setState({ id: this.props.id });
+    this.loadUserNotifications();
+    setTimeout(() => {
+      this.componentWillMount();
+    }, 3000);
+  }
+
+  loadUserNotifications = () => {
+    API.getUser(this.props.id).then((res, err) => {
+      if (err) {
+        console.log(err);
+      }
+      this.setState({
+        notifications: res.data.notifications,
+      });
+    });
+  };
+
+  deleteNotification = id => {
+    API.deleteNotification(id)
+      .then(res => this.componentWillMount())
+      .catch(err => console.log(err));
+  };
 
   logout(event) {
     event.preventDefault();
@@ -47,6 +75,18 @@ class NavMenu extends Component {
               </h1>
               <div className="links" id="icon-links">
                 <Row>
+                  <div id="notification-container">
+                    <Notifications
+                      notifications={this.state.notifications}
+                      deleteNotification={id => this.deleteNotification(id)}
+                    />
+                    <span class="badge badge-pill badge-danger" id="badge">
+                      {this.state.notifications.length
+                        ? this.state.notifications.length
+                        : null}
+                    </span>
+                  </div>
+
                   <Link
                     to="/"
                     className={

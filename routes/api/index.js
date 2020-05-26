@@ -7,6 +7,7 @@ const postRoutes = require('./posts');
 const commentRoutes = require('./comments');
 const likeRoutes = require('./likes');
 const followRoutes = require('./follow');
+const notificationRoutes = require('./notifications');
 
 router.use('/users', userRoutes);
 router.use('/workouts', workoutRoutes);
@@ -16,5 +17,6 @@ router.use('/posts', postRoutes);
 router.use('/comments', commentRoutes);
 router.use('/likes', likeRoutes);
 router.use('/follow', followRoutes);
+router.use('/notifications', notificationRoutes);
 
 module.exports = router;

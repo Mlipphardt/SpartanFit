@@ -95,6 +95,8 @@ class Post extends Component {
       lastName: this.state.commenterData.lastName,
       userpic: this.state.commenterImageUrl,
       userId: this.state.id,
+      originalPoster: this.state.posterId,
+      postId: this.state.postId,
     })
       .then(res => {
         if (res.status === 200) {

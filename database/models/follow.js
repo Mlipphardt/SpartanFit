@@ -7,6 +7,9 @@ const followSchema = new Schema({
   lastName: String,
   createdAt: { type: Date, default: Date.now },
   userId: { type: String, required: true },
+  followerfirstName: { type: String, required: true },
+  followerlastName: String,
+  followerUserName: { type: String, required: true },
 });
 
 const Follow = mongoose.model('Following', followSchema);

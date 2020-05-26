@@ -69,6 +69,12 @@ const userSchema = new Schema({
       ref: 'Following',
     },
   ],
+  notifications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Notification',
+    },
+  ],
   currentWeight: Number,
   goalWeight: Number,
   slug: {

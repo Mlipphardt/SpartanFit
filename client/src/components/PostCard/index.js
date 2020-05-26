@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
+import GridContainer from '../GridContainer';
 
 function PostCard(props) {
   return (
@@ -14,9 +16,15 @@ function PostCard(props) {
           </Link>
         </div>
         <div className="col-10 sm-9">
-          <h5 className="card-title mb-2">
-            {props.firstName} {props.lastName}
-          </h5>
+          <GridContainer style={{ gridTemplateColumns: '1fr 200px' }}>
+            <h5 className="card-title mb-2">
+              {props.firstName} {props.lastName}
+            </h5>
+            <h6 className="card-subtitle mb-2 text-muted">
+              <Moment format="MM/DD/YYYY hh:mm a" date={props.createdAt} />
+            </h6>
+          </GridContainer>
+
           <div className="card-text mb-1">{props.postBody}</div>
           {props.children}
         </div>
