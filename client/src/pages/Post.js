@@ -89,6 +89,7 @@ class Post extends Component {
   handleCommentClick = event => {
     event.preventDefault();
     API.makeComment(this.state.postId, {
+      commenterId: this.state.commenterData._id,
       username: this.state.commenterData.slug,
       commentBody: this.state.commentBody,
       firstName: this.state.commenterData.firstName,

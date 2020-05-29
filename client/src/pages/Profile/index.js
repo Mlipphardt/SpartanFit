@@ -121,6 +121,7 @@ class Profile extends Component {
               variant: variant,
               editProfile: false,
             });
+            this.loadUserProfile();
           }
         })
         .catch(err => {

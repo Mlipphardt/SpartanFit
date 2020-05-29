@@ -6,6 +6,7 @@ const notificationSchema = new Schema({
   username: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: String,
+  userId: { type: String, required: true },
   //commented, posted, followed, etc
   notificationType: { type: String, required: true },
   seen: { type: Boolean, required: true, default: false },

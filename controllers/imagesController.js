@@ -1,4 +1,4 @@
-const db = require("../database/models");
+const db = require('../database/models');
 
 module.exports = {
   postImage: function (req, res) {
@@ -21,7 +21,7 @@ module.exports = {
           { _id: { $in: dbImage.posts } },
           { userpic: req.file.location },
           { multi: true }
-        ).then((dbPosts) => {
+        ).then(dbPosts => {
           res.json(dbPosts);
         });
       })
@@ -31,7 +31,7 @@ module.exports = {
   },
   findById: function (req, res) {
     db.Image.findById(req.params.id)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
 };

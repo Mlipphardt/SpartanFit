@@ -118,6 +118,7 @@ class PublicProfile extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         userId: this.state.userId,
+        followerId: this.state.lurkerData._id,
         followerfirstName: this.state.lurkerData.firstName,
         followerlastName: this.state.lurkerData.lastName,
         followerUserName: this.state.lurkerData.slug,

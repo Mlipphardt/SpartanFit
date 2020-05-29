@@ -22,6 +22,7 @@ module.exports = {
       );
     }).then;
     db.Notification.create({
+      userId: req.body.followerId,
       username: req.body.followerUserName,
       firstName: req.body.followerfirstName,
       lastName: req.body.followerlastName,

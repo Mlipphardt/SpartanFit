@@ -35,7 +35,7 @@ module.exports = {
       }).then;
       db.Notification.create({
         username: req.body.username,
-        userId: req.body.userId,
+        userId: req.body.commenterId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         postId: req.body.postId,

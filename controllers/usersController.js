@@ -79,7 +79,48 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function (req, res) {
-    db.User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+    db.User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+      new: true,
+    }).then(function (dbUser) {
+      //Updates posts from the user specified in params
+      //with new pic.
+      return db.Post.update(
+        { _id: { $in: dbUser.posts } },
+        {
+          username: req.body.slug,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+        },
+        { multi: true }
+      );
+    }).then;
+    db.Comment.find({ userId: req.params.id }).then(function (dbComment) {
+      return db.Comment.updateMany(
+        { userId: req.params.id },
+        {
+          $set: {
+            username: req.body.slug,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+          },
+        },
+        { multi: true }
+      );
+    }).then;
+    db.Notification.find({ userId: req.params.id })
+      .then(function (dbNotification) {
+        return db.Notification.updateMany(
+          { userId: req.params.id },
+          {
+            $set: {
+              username: req.body.slug,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+            },
+          },
+          { multi: true }
+        );
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
