@@ -64,7 +64,11 @@ class Recipes extends Component {
       title: document.getElementById("card-title-" + id).textContent,
       image: document.getElementById("card-image-" + id).getAttribute("src"),
       link: document.getElementById("card-link-" + id).getAttribute("href"),
+      calories: document
+        .getElementById("card-calories-" + id)
+        .textContent.split(" ")[0],
     };
+    console.log(savedRecipe);
     //If card is in staging area already when button is clicked, remove from staging area to prevent multiple-posting.
     if (this.state.stagedRecipes.includes(savedRecipe.title)) {
       this.setState({

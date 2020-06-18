@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import RecipeCard from '../components/RecipeCard';
-import API from '../utils/API';
-import Wrapper from '../components/Wrapper';
-import GridContainer from '../components/GridContainer';
-import { Col, Row, Container } from '../components/Grid';
+import React, { Component } from "react";
+import RecipeCard from "../components/RecipeCard";
+import API from "../utils/API";
+import Wrapper from "../components/Wrapper";
+import GridContainer from "../components/GridContainer";
+import { Col, Row, Container } from "../components/Grid";
 
 class Recipes extends Component {
   state = {
@@ -27,7 +27,7 @@ class Recipes extends Component {
     });
   };
 
-  deleteUserRecipe = id => {
+  deleteUserRecipe = (id) => {
     API.deleteMeal(id).then((err, res) => {
       if (err) {
         console.log(err);
@@ -43,7 +43,7 @@ class Recipes extends Component {
           <h1>
             <strong>Your Favorites</strong>
           </h1>
-          <GridContainer style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+          <GridContainer style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
             {/* Generate recipe cards for each result */}
             {this.state.results.map((recipe, index) => (
               <RecipeCard
@@ -52,6 +52,7 @@ class Recipes extends Component {
                 image={recipe.image}
                 name={recipe.title}
                 link={recipe.link}
+                calories={recipe.calories ? recipe.calories : 300}
                 delete={this.deleteUserRecipe}
               />
             ))}
