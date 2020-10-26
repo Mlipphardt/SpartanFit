@@ -17,7 +17,8 @@ const postSchema = new Schema({
   userId: { type: String, required: true },
 });
 
-postSchema.index({ postBody: 'text', lastName: 'text', firstName: 'text' });
+//postSchema.index({ postBody: 'text', lastName: 'text', firstName: 'text' });
+postSchema.index({ '$**': 'text' });
 
 const Post = mongoose.model('Post', postSchema);
 
