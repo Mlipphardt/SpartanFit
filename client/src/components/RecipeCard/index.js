@@ -7,7 +7,10 @@ function RecipeCard(props) {
       <div className="card-body" style={{ height: "3%" }}>
         {/* If card is saved, tell user. */}
         {props.calories ? (
-          <span className="float-left fadeIn my-1 calorie-count">
+          <span
+            className="float-left fadeIn my-1 calorie-count"
+            id={`card-calories-${props.id}`}
+          >
             {Math.trunc(props.calories)} calories
           </span>
         ) : (
